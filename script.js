@@ -350,6 +350,7 @@ function editProduct(id) {
             showImagePreview(product.image);
         }
         productModal.style.display = "block";
+        productModal.classList.add("active");
     }
 }
 
@@ -494,6 +495,8 @@ function setupEventListeners() {
         loginLink.addEventListener("click", (e) => {
             e.preventDefault();
             loginModal.style.display = "block";
+            loginModal.classList.add("active");
+            setTimeout(() => switchAuthTab("login"), 10);
         });
     }
     
@@ -528,6 +531,7 @@ function setupEventListeners() {
                 if (modal.id === "productModal") {
                     clearImagePreview();
                     resetImageUploadTabs();
+                    modal.classList.remove("active");
                 } else if (modal.id === "loginModal") {
                     // Reset to login tab when closing
                     switchAuthTab("login");
@@ -535,6 +539,7 @@ function setupEventListeners() {
                     document.getElementById("registerForm").reset();
                     document.getElementById("loginError").classList.remove("show");
                     document.getElementById("registerError").classList.remove("show");
+                    modal.classList.remove("active");
                 }
             }
         });
@@ -543,6 +548,7 @@ function setupEventListeners() {
     window.addEventListener("click", (e) => {
         if (e.target === loginModal) {
             loginModal.style.display = "none";
+            loginModal.classList.remove("active");
             switchAuthTab("login");
             document.getElementById("loginForm").reset();
             document.getElementById("registerForm").reset();
@@ -551,6 +557,7 @@ function setupEventListeners() {
         }
         if (e.target === productModal) {
             productModal.style.display = "none";
+            productModal.classList.remove("active");
             clearImagePreview();
             resetImageUploadTabs();
         }
@@ -564,6 +571,7 @@ function setupEventListeners() {
         clearImagePreview();
         resetImageUploadTabs();
         productModal.style.display = "block";
+        productModal.classList.add("active");
     });
     
     // Image Upload Tab Switching
@@ -615,6 +623,7 @@ function setupEventListeners() {
     
     cancelBtn.addEventListener("click", () => {
         productModal.style.display = "none";
+        productModal.classList.remove("active");
         clearImagePreview();
         resetImageUploadTabs();
     });
@@ -665,6 +674,7 @@ async function handleLogin(e) {
         
         errorMsg.classList.remove("show");
         loginModal.style.display = "none";
+        loginModal.classList.remove("active");
         loginForm.reset();
         updateAuthUI();
         if (isAdmin) {
@@ -710,6 +720,7 @@ async function handleRegister(e) {
         
         errorMsg.classList.remove("show");
         loginModal.style.display = "none";
+        loginModal.classList.remove("active");
         document.getElementById("registerForm").reset();
         updateAuthUI();
         alert(`Account created successfully! Welcome, ${name}!`);
@@ -939,6 +950,7 @@ async function handleProductSubmit(e) {
         }
         
         productModal.style.display = "none";
+        productModal.classList.remove("active");
         productForm.reset();
         clearImagePreview();
         resetImageUploadTabs();
