@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yapan E-Commerce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>YAPAN</h1>
+            </div>
+            <ul class="nav-menu">
+                <li id="home-nav"><a href="#" data-page="home">Home</a></li>
+                <li id="products-nav"><a href="#" data-page="products">Products</a></li>
+                <li id="about-nav"><a href="#" data-page="about">About Us</a></li>
+                <li id="contact-nav"><a href="#" data-page="contact">Contact Us</a></li>
+                <li id="login-nav"><a href="#" id="login-link">Login</a></li>
+                <li id="user-info" style="display: none;" class="user-info">
+                    <span class="user-icon">👤</span>
+                    <span id="user-name"></span>
+                    <span id="user-badge" class="user-badge"></span>
+                </li>
+                <li id="cart-nav" style="display: none;"><a href="#" data-page="cart">Cart (<span id="cart-count">0</span>)</a></li>
+                <li id="admin-nav" style="display: none;"><a href="#" data-page="admin">Admin</a></li>
+                <li id="logout-nav" style="display: none;"><a href="#" id="logout-btn">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button type="button" class="auth-tab active" data-tab="login">Login</button>
+                <button type="button" class="auth-tab" data-tab="register">Create Account</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="loginFormPanel" class="auth-panel active">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Email</label>
+                        <input type="email" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <p id="loginError" class="error-message"></p>
+            </div>
+            
+            <!-- Registration Form -->
+            <div id="registerFormPanel" class="auth-panel">
+                <h2>Create Account</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" minlength="6" required>
+                        <small style="color: #666; font-size: 0.85rem;">Minimum 6 characters</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirm Password</label>
+                        <input type="password" id="registerConfirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Create Account</button>
+                </form>
+                <p id="registerError" class="error-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <h1>Welcome to Yapan E-Commerce</h1>
+            <p>Your one-stop shop for quality products</p>
+        </div>
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Page -->
+    <section id="products" class="page">
+        <div class="container">
+            <h1>All Products</h1>
+            <div class="products-grid" id="allProductsGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Page -->
+    <section id="about" class="page">
+        <div class="container">
+            <h1>About Us</h1>
+            <div class="about-content">
+                <div class="about-section">
+                    <h2>Our Story</h2>
+                    <p>Yapan E-Commerce was founded with a vision to provide quality products to customers worldwide. We believe in delivering excellence, customer satisfaction, and building lasting relationships with our community.</p>
+                </div>
+                <div class="about-section">
+                    <h2>Our Mission</h2>
+                    <p>To offer a wide range of high-quality products at competitive prices while maintaining exceptional customer service and support. We strive to make online shopping convenient, secure, and enjoyable for everyone.</p>
+                </div>
+                <div class="about-section">
+                    <h2>Our Values</h2>
+                    <ul>
+                        <li><strong>Quality:</strong> We source only the best products</li>
+                        <li><strong>Integrity:</strong> Honest and transparent business practices</li>
+                        <li><strong>Customer First:</strong> Your satisfaction is our priority</li>
+                        <li><strong>Innovation:</strong> Continuously improving our services</li>
+                    </ul>
+                </div>
+                <div class="about-section">
+                    <h2>Why Choose Us?</h2>
+                    <p>With years of experience in the e-commerce industry, we understand what customers need. Our team is dedicated to providing you with a seamless shopping experience, from browsing to delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Page -->
+    <section id="contact" class="page">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <div class="contact-item">
+                        <h3>📍 Location</h3>
+                        <p>Pagadian City, Sta Lucia</p>
+                        <p>Philippines</p>
+                        <p><strong>GPS Coordinates:</strong> 7.8256° N, 123.4370° E</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>🗺️ Find Us on Map</h3>
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.1234567890123!2d123.4370!3d7.8256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNDknMzIuMiJOIDEyM8KwMjYnMTMuMiJF!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus" 
+                                width="100%" 
+                                height="300" 
+                                style="border:2px solid #000000;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                            <p class="map-link">
+                                <a href="https://www.google.com/maps?q=7.8256,123.4370" target="_blank" class="btn-secondary">Open in Google Maps</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📧 Email</h3>
+                        <p>info@yapan.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📞 Phone</h3>
+                        <p>+63 XXX XXX XXXX</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>🕒 Business Hours</h3>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <p>Saturday: 10:00 AM - 4:00 PM</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <h2>Send us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Name</label>
+                            <input type="text" id="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Page -->
+    <section id="cart" class="page">
+        <div class="container">
+            <h1>Shopping Cart</h1>
+            <div id="cart-content" style="display: none;">
+                <div id="cart-items">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div id="cart-summary" class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (10%):</span>
+                        <span id="cart-tax">$0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="cart-total">$0.00</span>
+                    </div>
+                    <button id="checkout-btn" class="btn-primary">Proceed to Checkout</button>
+                </div>
+            </div>
+            <div id="empty-cart" class="empty-cart" style="display: none;">
+                <p>Your cart is empty.</p>
+                <a href="#" data-page="products" class="btn-primary">Continue Shopping</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="admin" class="page">
+        <div class="container">
+            <h1>Admin Dashboard</h1>
+            <div class="admin-controls">
+                <button id="addProductBtn" class="btn-primary">Add New Product</button>
+            </div>
+            
+            <div class="admin-products">
+                <h2>Manage Products</h2>
+                <div class="products-grid" id="adminProductsGrid">
+                    <!-- Admin products will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add Product</h2>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price</label>
+                    <input type="number" id="productPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescription" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Product Image</label>
+                    <div class="image-upload-options">
+                        <div class="upload-tabs">
+                            <button type="button" class="upload-tab active" data-tab="url">Image URL</button>
+                            <button type="button" class="upload-tab" data-tab="file">Upload File</button>
+                        </div>
+                        <div class="upload-content">
+                            <div id="url-upload" class="upload-panel active">
+                                <input type="url" id="productImage" placeholder="Enter image URL">
+                            </div>
+                            <div id="file-upload" class="upload-panel">
+                                <input type="file" id="productImageFile" accept="image/*">
+                                <small>Max file size: 5MB. Supported formats: JPG, PNG, GIF</small>
+                            </div>
+                        </div>
+                        <div id="imagePreview" class="image-preview" style="display: none;">
+                            <img id="previewImg" src="" alt="Preview">
+                            <button type="button" class="remove-preview" onclick="clearImagePreview()">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">Category</label>
+                    <input type="text" id="productCategory" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn-primary">Save Product</button>
+                    <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
